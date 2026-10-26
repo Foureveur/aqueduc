@@ -1,0 +1,9 @@
+<!-- Page Les plateaux, section #dispos : tableau + visualisation 3D des disponibilités, servis par Dispo
+     (dispo.partiqle.studio, projet « aqueduc »). Code d'intégration fourni par Dispo : iframe paresseuse,
+     hauteur ajustée par le message « ptq-dispo:height ». Le look et les lots se règlent dans Dispo, pas ici. -->
+<style>
+  .ptq-dispo { margin-bottom: 100px; background: #faf7ee; }
+  .ptq-dispo iframe { display: block; }
+</style>
+<div class="ptq-dispo"></div>
+<script>(function(s){var f=document.createElement("iframe");f.src="https://dispo.partiqle.studio/v/aqueduc?view=plan-table&header=0&embed=1";f.title="Disponibilités L'Aqueduc";f.loading="lazy";f.style.cssText="width:100%;border:0;height:720px";s.previousElementSibling.appendChild(f);window.addEventListener("message",function(e){if(e.source===f.contentWindow&&e.data&&e.data.type==="ptq-dispo:height")f.style.height=e.data.height+"px"})})(document.currentScript);</script>
