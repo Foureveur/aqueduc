@@ -1,0 +1,64 @@
+<!-- Visite 3D (Spacia) en fenêtre plein écran. Ouverture : tout lien [data-open-3d] ou href="#visite-3d". -->
+<div class="aq3d" id="visite-3d" role="dialog" aria-modal="true" aria-label="Visite 3D de L'Aqueduc" aria-hidden="true">
+  <div class="aq3d__bar">
+    <span class="aq3d__title">Visite 3D de L'Aqueduc</span>
+    <button type="button" class="aq3d__close" data-close-3d aria-label="Fermer la visite 3D">Fermer <span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="aq3d__frame"></div>
+</div>
+<style>
+.aq3d{position:fixed;inset:0;z-index:100000;display:flex;flex-direction:column;background:#1d2e27;opacity:0;visibility:hidden;transition:opacity .45s cubic-bezier(.65,.01,.05,.99),visibility 0s linear .45s}
+.aq3d.is-open{opacity:1;visibility:visible;transition:opacity .45s cubic-bezier(.65,.01,.05,.99)}
+.aq3d__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;color:#faf7ee}
+.aq3d__title{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.aq3d__close{border:0;border-radius:4px;padding:10px 16px;background:#c3a384;color:#1d2e27;font:inherit;font-size:14px;cursor:pointer}
+.aq3d__close:focus-visible{outline:2px solid #faf7ee;outline-offset:2px}
+.aq3d__frame{position:relative;flex:1}
+.aq3d__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+html.wf-design-mode .aq3d,html.w-editor .aq3d{display:none!important}
+</style>
+<script>
+(function () {
+  var SRC = 'https://demo.laqueduc.work/demo';
+  var modal = document.getElementById('visite-3d');
+  if (!modal) return;
+  var frame = modal.querySelector('.aq3d__frame');
+  var lastFocus = null;
+
+  function smooth(method) {
+    try { if (typeof lenis !== 'undefined' && lenis[method]) lenis[method](); } catch (e) {}
+  }
+  function open(e) {
+    if (e) e.preventDefault();
+    lastFocus = document.activeElement;
+    // La 3D n'est chargée qu'au premier clic, puis conservée entre deux ouvertures
+    if (!frame.firstChild) {
+      var f = document.createElement('iframe');
+      f.src = SRC;
+      f.title = "Visite 3D de L'Aqueduc";
+      f.allow = 'fullscreen; xr-spatial-tracking; accelerometer; gyroscope';
+      f.setAttribute('allowfullscreen', '');
+      frame.appendChild(f);
+    }
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    smooth('stop');
+    modal.querySelector('[data-close-3d]').focus();
+  }
+  function close() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.documentElement.style.overflow = '';
+    smooth('start');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open-3d], a[href$="#visite-3d"]')) open(e);
+    else if (e.target.closest('[data-close-3d]')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+  });
+})();
+</script>

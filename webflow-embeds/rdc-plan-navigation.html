@@ -1,0 +1,32 @@
+<!-- Page L'expérience, plan du RDC : un clic sur un polaroïd [data-rdc] ouvre l'onglet [data-svc] correspondant
+     (onglets Webflow des blocs de services, ou bloc des halls) et fait défiler jusqu'à lui. -->
+<script>
+(function () {
+  // Position dans le flux, sans les translations GSAP appliquées aux blocs de services
+  function docTop(el) {
+    var y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  }
+  function goTo(key, e) {
+    var target = document.querySelector('[data-svc="' + key + '"]');
+    if (!target) return;
+    if (e) e.preventDefault();
+    if (target.classList.contains('w-tab-link')) target.click();
+    // Les onglets sont ~1000 px sous le titre du bloc : on vise les onglets pour que le détail soit à l'écran
+    var anchor = target.closest('.w-tabs') || target;
+    var y = Math.max(0, docTop(anchor) - 120);
+    if (typeof lenis !== 'undefined' && lenis.scrollTo) lenis.scrollTo(y, { duration: 1.4 });
+    else window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+  document.addEventListener('click', function (e) {
+    var pin = e.target.closest('[data-rdc]');
+    if (pin) goTo(pin.getAttribute('data-rdc'), e);
+  });
+  // Le plan est chargé en différé : une fois affiché, on recalcule les déclencheurs GSAP des blocs de services en dessous
+  var plan = document.querySelector('.rdc-plan-img');
+  if (plan && !plan.complete) plan.addEventListener('load', function () {
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+})();
+</script>

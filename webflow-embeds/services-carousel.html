@@ -1,0 +1,29 @@
+<!-- Accueil, section L'expérience : fondu automatique entre les photos de chaque service.
+     Photos supplémentaires = images .image-cover.carousel-slide empilées sur la première. -->
+<script>
+(function () {
+  var DELAY = 3500;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function init() {
+    document.querySelectorAll('.features-image-wrap').forEach(function (wrap) {
+      var slides = wrap.querySelectorAll('.image-cover.carousel-slide');
+      if (!slides.length) return;
+      var index = 0, count = slides.length + 1, onScreen = false;
+      function show(k) {
+        // k = 0 : la photo d'origine (en flux) ; k ≥ 1 : une photo empilée par-dessus
+        slides.forEach(function (s, j) { s.style.opacity = j + 1 === k ? 1 : 0; });
+      }
+      new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; }, { threshold: 0.2 }).observe(wrap);
+      setInterval(function () {
+        // onglet masqué (display:none) ou hors écran : on ne fait rien
+        if (!onScreen || wrap.offsetParent === null) return;
+        index = (index + 1) % count;
+        show(index);
+      }, DELAY);
+    });
+  }
+  // l'embed est placé au-dessus de la section : on attend que la page soit construite
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
