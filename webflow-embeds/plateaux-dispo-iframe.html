@@ -4,6 +4,8 @@
 <style>
   .ptq-dispo { margin-bottom: 100px; background: #faf7ee; }
   .ptq-dispo iframe { display: block; }
+  /* Sur mobile, Dispo empile la 3D et le tableau mais annonce toujours 720 px : on réserve la hauteur complète */
+  @media (max-width: 767px) { .ptq-dispo iframe { height: 1100px !important; } }
 </style>
 <div class="ptq-dispo"></div>
 <script>(function(s){var f=document.createElement("iframe");f.src="https://dispo.partiqle.studio/v/aqueduc?view=plan-table&header=0&embed=1";f.title="Disponibilités L'Aqueduc";f.loading="lazy";f.style.cssText="width:100%;border:0;height:720px";s.previousElementSibling.appendChild(f);window.addEventListener("message",function(e){if(e.source===f.contentWindow&&e.data&&e.data.type==="ptq-dispo:height")f.style.height=e.data.height+"px"})})(document.currentScript);</script>
