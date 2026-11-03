@@ -16,8 +16,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
   <link rel="preload" href="/assets/hero-auditorium.webp" as="image">
   <link rel="stylesheet" href="/styles.css">
+  <script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-loading");</script>
 </head>
 <body>
+
+  <!-- Preloader : même principe que celui du site vitrine (logo, pile de photos qui défilent) -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__box">
+      <img class="preloader__logo" src="/assets/logo-aqueduc-white.svg" alt="" width="180" height="22">
+      <div class="preloader__img" style="background-image:url(/assets/config-amphitheatre.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/patio.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/config-plateau-libre.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/hero-auditorium.webp)"></div>
+    </div>
+  </div>
 
   <header class="nav">
     <div class="container nav__inner">
@@ -25,6 +37,7 @@
         <img src="/assets/logo-aqueduc-white.svg" alt="L'Aqueduc" width="180" height="22">
       </a>
       <span class="label nav__address">20 rue des Aqueducs<br>94250 · Gentilly</span>
+      <a class="nav__link" href="https://laqueduc.work" target="_blank" rel="noopener">Découvrir L'Aqueduc</a>
       <a class="btn btn--light nav__cta" href="#demande">Demander un devis</a>
     </div>
   </header>
@@ -32,7 +45,7 @@
   <main>
     <!-- Recto du flyer : accroche, prix, essentiel, événements -->
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero__img" src="/assets/hero-auditorium.webp" alt="L'auditorium de L'Aqueduc : gradins en bois et assises rosées baignés de lumière" width="2000" height="2667">
+      <img class="hero__img" data-parallax src="/assets/hero-auditorium.webp" alt="L'auditorium de L'Aqueduc : gradins en bois et assises rosées baignés de lumière" width="2000" height="2667">
       <div class="hero__veil"></div>
       <div class="container hero__content">
         <span class="label label-pill label-pill--light">L'Auditorium · Location</span>
@@ -43,8 +56,8 @@
     <section class="intro">
       <div class="container intro__grid">
         <div class="intro__text reveal">
-          <p class="text-big">Découvrez une salle de conférence modulable et tout équipée pouvant accueillir jusqu'à 210 places assises.</p>
-          <p class="text-big">Aux portes de Paris, l'auditorium de L'Aqueduc est pensé pour une expérience d'accueil de haut standing.</p>
+          <p class="text-lead">Découvrez une salle de conférence modulable et tout équipée pouvant accueillir jusqu'à 210 places assises.</p>
+          <p class="text-lead">Aux portes de Paris, l'auditorium de L'Aqueduc est pensé pour une expérience d'accueil de haut standing.</p>
         </div>
         <a class="price-card reveal" href="#demande">
           <span class="label">Louez l'auditorium</span>
@@ -76,33 +89,7 @@
       </div>
     </section>
 
-    <!-- Verso du flyer : formules, configurations, services -->
-    <section class="section section--tight" aria-labelledby="formules-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="formules-title" class="h2">Formules</h2>
-          <p class="text-small muted">Une offre adaptable à tous les types d'événements.</p>
-        </div>
-        <ul class="plans">
-          <li class="plan reveal">
-            <span class="label">Demi-journée</span>
-            <span class="plan__hours">9h – 13h00</span>
-            <span class="plan__price">À partir de 3 000 € HT</span>
-          </li>
-          <li class="plan plan--featured reveal">
-            <span class="label">Journée</span>
-            <span class="plan__hours">9h – 18h00</span>
-            <span class="plan__price">À partir de 5 000 € HT</span>
-          </li>
-          <li class="plan reveal">
-            <span class="label">After work</span>
-            <span class="plan__hours">À partir de 18h</span>
-            <span class="plan__price">Sur demande · Devis gratuit</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
+    <!-- Verso du flyer : configurations, services, formules -->
     <section class="section section--white" aria-labelledby="config-title">
       <div class="container config">
         <div class="config__text">
@@ -132,47 +119,64 @@
 
         <div class="config__photos">
           <figure class="config__photo reveal">
-            <img src="/assets/config-amphitheatre.webp" alt="Configuration amphithéâtre : gradins déployés face à la scène" width="1400" height="934" loading="lazy">
+            <img data-parallax src="/assets/config-amphitheatre.webp" alt="Configuration amphithéâtre : gradins déployés face à la scène" width="1400" height="934" loading="lazy">
             <figcaption class="label">Amphithéâtre · 210 places assises</figcaption>
           </figure>
           <figure class="config__photo reveal">
-            <img src="/assets/config-plateau-libre.webp" alt="Configuration plateau libre : gradins rétractés, parquet dégagé" width="1400" height="934" loading="lazy">
+            <img data-parallax src="/assets/config-plateau-libre.webp" alt="Configuration plateau libre : gradins rétractés, parquet dégagé" width="1400" height="934" loading="lazy">
             <figcaption class="label">Plateau libre · 334 personnes</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="cta" aria-labelledby="cta-title">
-      <img class="cta__img" src="/assets/patio.webp" alt="" width="973" height="1476" loading="lazy">
-      <div class="cta__veil"></div>
-      <div class="container cta__content">
-        <h2 id="cta-title" class="h-display">Réservez l'auditorium dès maintenant !</h2>
-        <div class="cta__cols">
-          <div>
-            <span class="label label--gold">Contactez-nous</span>
-            <p>David Codazzi<br>
-              <a href="tel:+33644268904">+33 6 44 26 89 04</a><br>
-              <a href="mailto:d.codazzi@polaris-op.com">d.codazzi@polaris-op.com</a></p>
-          </div>
-          <div>
-            <span class="label label--gold">Accès</span>
-            <p>RER B · Gentilly<br>Métro 4 · Mairie de Montrouge<br>Tram T3a · Cité Universitaire</p>
-          </div>
-          <div class="cta__action">
-            <a class="btn btn--light" href="#demande">Votre demande en ligne</a>
-          </div>
+    <!-- Formules -->
+    <section class="section section--plans" aria-labelledby="formules-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="formules-title" class="h2">Formules</h2>
+          <p class="text-small muted">Une offre adaptable à tous les types d'événements.</p>
         </div>
+        <ul class="plans">
+          <li class="plan reveal">
+            <span class="label">Demi-journée</span>
+            <span class="plan__hours">9h – 13h00</span>
+            <span class="plan__price">À partir de 3 000 € HT</span>
+          </li>
+          <li class="plan plan--featured reveal">
+            <span class="label">Journée</span>
+            <span class="plan__hours">9h – 18h00</span>
+            <span class="plan__price">À partir de 5 000 € HT</span>
+          </li>
+          <li class="plan reveal">
+            <span class="label">After work</span>
+            <span class="plan__hours">À partir de 18h</span>
+            <span class="plan__price">Sur demande · Devis gratuit</span>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <!-- Formulaire : identité obligatoire, précisions facultatives -->
-    <section class="section form-section" id="demande" aria-labelledby="form-title">
-      <div class="container form-grid">
-        <div class="form-intro">
-          <span class="label label-pill">Votre demande</span>
-          <h2 id="form-title" class="h2">Parlons de votre événement</h2>
-          <p class="text-small muted">Laissez-nous vos coordonnées : nous revenons vers vous rapidement avec une proposition adaptée. Les précisions sur votre événement sont facultatives mais nous aident à vous répondre plus vite.</p>
+    <!-- Réservation : contact, accès et formulaire (identité obligatoire, précisions facultatives) -->
+    <section class="cta" id="demande" aria-labelledby="cta-title">
+      <img class="cta__img" data-parallax src="/assets/patio.webp" alt="" width="973" height="1476" loading="lazy">
+      <div class="cta__veil"></div>
+      <div class="container cta__content">
+        <div class="cta__intro">
+          <h2 id="cta-title" class="h-display">Réservez l'auditorium dès maintenant !</h2>
+          <p class="text-small cta__lede">Laissez-nous vos coordonnées : nous revenons vers vous rapidement avec une proposition adaptée. Les précisions sur votre événement sont facultatives mais nous aident à vous répondre plus vite.</p>
+          <div class="cta__cols">
+            <div>
+              <span class="label label--gold">Contactez-nous</span>
+              <p>David Codazzi<br>
+                <a href="tel:+33644268904">+33 6 44 26 89 04</a><br>
+                <a href="mailto:d.codazzi@polaris-op.com">d.codazzi@polaris-op.com</a></p>
+            </div>
+            <div>
+              <span class="label label--gold">Accès</span>
+              <p>RER B · Gentilly<br>Métro 4 · Mairie de Montrouge<br>Tram T3a · Cité Universitaire</p>
+            </div>
+          </div>
         </div>
 
         <form class="form" id="contact-form" novalidate>
@@ -238,7 +242,7 @@
           <input class="hp" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="form__footer">
-            <button class="btn btn--dark" type="submit" id="f-submit">Envoyer ma demande</button>
+            <button class="btn btn--light" type="submit" id="f-submit">Envoyer ma demande</button>
             <p class="form__status" id="f-status" role="status" aria-live="polite"></p>
           </div>
         </form>
