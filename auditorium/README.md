@@ -12,3 +12,9 @@ Variables d'environnement Vercel :
 - `MAIL_FROM_NAME` : nom affiché (facultatif)
 
 Domaine : enregistrement CNAME `auditorium` → `cname.vercel-dns.com` dans la zone OVH de laqueduc.work.
+
+## Clé Brevo toujours active
+
+Brevo désactive une clé API restée 90 jours sans utilisation. La tâche planifiée Vercel
+`/api/keepalive` (chaque lundi, 7h17 UTC, voir `vercel.json`) fait un simple appel de lecture
+avec la clé pour la garder active. Aucun e-mail n'est envoyé.
