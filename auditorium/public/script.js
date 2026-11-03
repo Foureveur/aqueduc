@@ -34,6 +34,13 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
   function update() {
     var vh = window.innerHeight;
     items.forEach(function (img) {
+      // Photo d'ouverture : cadrée exactement comme la dernière image du preloader, elle descend
+      // simplement moins vite que la page (aucun décalage tant que la page n'a pas défilé).
+      if (img.classList.contains("hero__img")) {
+        var y = Math.min(window.scrollY, vh);
+        img.style.transform = "translate3d(0," + (y * 0.3).toFixed(1) + "px,0)";
+        return;
+      }
       var box = (img.closest("figure") || img.parentElement).getBoundingClientRect();
       if (box.bottom < -100 || box.top > vh + 100) return;
       var progress = (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2); // -1 → 1
