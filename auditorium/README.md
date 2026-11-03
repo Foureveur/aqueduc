@@ -6,7 +6,7 @@ polices Bw Gradual / Satoshi / DM Mono, boutons). Site statique (`public/`) + un
 Vercel (`api/contact.js`) qui envoie les demandes du formulaire par e-mail via Brevo.
 
 Variables d'environnement Vercel :
-- `BREVO_API_KEY` : clé API Brevo
+- `BREVO_API_KEY` : clé API Brevo dédiée « auditorium » (accès restreint : emails transactionnels uniquement ; expire après 90 jours sans utilisation)
 - `MAIL_TO` : destinataires, séparés par des virgules
 - `MAIL_FROM` : expéditeur vérifié dans Brevo
 - `MAIL_FROM_NAME` : nom affiché (facultatif)
