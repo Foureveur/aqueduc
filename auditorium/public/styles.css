@@ -111,12 +111,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Bandeau vert : accroche + prix */
 .intro { background: var(--dark); color: var(--light); }
 .intro__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: 64px; align-items: start; padding-top: 112px; padding-bottom: 112px; }
-.intro__text { display: grid; gap: .8em; max-width: 62ch; }
+.intro__text { display: grid; gap: 1.4em; max-width: 62ch; }
 .price-card { display: grid; gap: 12px; padding: 32px; background: var(--nutgold); color: var(--white); text-decoration: none; transition: transform .4s cubic-bezier(.65,.01,.05,.99); }
 .price-card:hover { transform: translateY(-4px); }
 .price-card__amount { font-family: var(--font-serif); font-size: clamp(48px, 6vw, 72px); font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
 .price-card__amount small { font-size: .38em; letter-spacing: 0; }
-.price-card__note { color: var(--white); }
+.price-card__note { color: var(--white); opacity: .65; }
 
 /* Sections */
 .section { padding-top: 96px; padding-bottom: 96px; }
