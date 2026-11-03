@@ -1,5 +1,63 @@
-// Landing auditorium : apparitions au défilement et envoi du formulaire vers /api/contact.
+// Landing auditorium : preloader, parallaxe, apparitions au défilement et envoi du formulaire vers /api/contact.
 document.documentElement.classList.add("js");
+var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Preloader : le logo et la pile de photos apparaissent, les photos du dessus s'effacent
+// une à une, puis l'écran vert se retire (même rythme que le site vitrine, environ 2,5 s).
+(function preloader() {
+  var root = document.documentElement;
+  var el = document.querySelector(".preloader");
+  if (!el || !root.classList.contains("is-loading")) return;
+  var imgs = [].slice.call(el.querySelectorAll(".preloader__img")).reverse(); // du dessus vers le dessous
+  var heroReady = new Promise(function (resolve) {
+    var hero = document.querySelector(".hero__img");
+    if (!hero || hero.complete) return resolve();
+    hero.addEventListener("load", resolve); hero.addEventListener("error", resolve);
+    setTimeout(resolve, 3500);
+  });
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  requestAnimationFrame(function () { el.classList.add("is-on"); });
+  wait(500)
+    .then(function () {
+      return imgs.slice(0, -1).reduce(function (p, img) {
+        return p.then(function () { img.classList.add("is-hidden"); return wait(280); });
+      }, wait(250));
+    })
+    .then(function () { return Promise.all([heroReady, wait(450)]); })
+    .then(function () { el.classList.add("is-out"); return wait(300); })
+    .then(function () {
+      el.classList.add("is-done");
+      root.classList.remove("is-loading");
+      return wait(400);
+    })
+    .then(function () { el.remove(); });
+  // Filet de sécurité : la page ne reste jamais bloquée derrière le preloader
+  setTimeout(function () { root.classList.remove("is-loading"); if (el.parentNode) el.remove(); }, 6000);
+})();
+
+// Parallaxe légère : chaque image marquée data-parallax glisse un peu moins vite que la page.
+(function parallax() {
+  if (reduceMotion) return;
+  var items = [].slice.call(document.querySelectorAll("[data-parallax]"));
+  if (!items.length) return;
+  var ticking = false;
+  function update() {
+    var vh = window.innerHeight;
+    items.forEach(function (img) {
+      var box = (img.closest("figure") || img.parentElement).getBoundingClientRect();
+      if (box.bottom < -100 || box.top > vh + 100) return;
+      var progress = (box.top + box.height / 2 - vh / 2) / (vh / 2 + box.height / 2); // -1 → 1
+      var range = img.closest("figure") ? 5 : 7; // en % de la hauteur de l'image
+      var scale = img.closest("figure") ? " scale(1.12)" : "";
+      img.style.transform = "translate3d(0," + (progress * -range).toFixed(2) + "%,0)" + scale;
+    });
+    ticking = false;
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
 
 (function reveal() {
   var items = document.querySelectorAll(".reveal");
