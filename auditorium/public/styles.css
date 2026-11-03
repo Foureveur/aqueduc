@@ -113,7 +113,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__scroll:hover .hero__scroll-circle { background: var(--nutgold); border-color: var(--nutgold); color: var(--white); }
 @keyframes hero-nudge { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(4px); } }
 @media (prefers-reduced-motion: reduce) { .hero__scroll-circle svg { animation: none; } }
-.hero h1 { max-width: 22ch; text-wrap: wrap; }
+.hero h1 { max-width: 13.6em; text-wrap: wrap; } /* 3 lignes comme le flyer : « Réservez un auditorium / de haut standing pour / vos événements » */
 
 /* Bandeau vert : accroche + prix */
 .intro { background: var(--dark); color: var(--light); }
