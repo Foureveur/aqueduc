@@ -130,7 +130,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 .section--white { background: var(--white); }
 .section-head { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
 
-/* L'essentiel */
+/* L'essentiel : photo portrait à gauche (40 %), cartes sur deux colonnes à droite (60 %) */
+.essentiel { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 48px; align-items: stretch; }
+.essentiel__photo { margin: 0; position: relative; overflow: hidden; min-height: 100%; }
+.essentiel__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+.essentiel__content { display: flex; flex-direction: column; }
+.essentiel__content > .label-pill { align-self: flex-start; }
+.essentiel .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .feature { background: var(--white); padding: 24px 28px; min-height: 120px; display: grid; align-content: start; gap: 6px; }
 .feature__title { font-family: var(--font-serif); font-weight: 400; font-size: var(--h5); letter-spacing: -0.03em; line-height: 1.1; }
@@ -166,6 +172,34 @@ ul { margin: 0; padding: 0; list-style: none; }
 .config__photo { margin: 0; position: relative; overflow: hidden; }
 .config__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transform: scale(1.12); }
 .config__photo figcaption { z-index: 1; position: absolute; right: 0; bottom: 0; background: var(--dark); color: var(--light); padding: 8px 14px; }
+
+/* Galerie : slider Flickity « cards » de la bibliothèque Partiqle (osmo-flickity-slider),
+   repris de laqueduc.work/experience et habillé aux couleurs de la landing */
+.gallery { padding-top: 96px; padding-bottom: 112px; overflow: hidden; background: var(--light); }
+.gallery .label-pill { margin-bottom: 32px; }
+[data-flickity-status="active"] [data-flickity-list]::after { content: "flickity"; display: none; }
+[data-flickity-status="active"] [data-flickity-list] { display: block; }
+[data-flickity-list] .flickity-viewport { overflow: visible; width: 100%; }
+[data-flickity-list]:focus-visible { outline: none; }
+[data-flickity-control][disabled] { visibility: hidden; opacity: 0; pointer-events: none; }
+[data-flickity-type="cards"] { --flick-col: 3.5; --flick-gap: 16px; }
+@media (min-width: 768px) and (max-width: 991px) { [data-flickity-type="cards"] { --flick-col: 2.5; } [data-flickity-type="cards"] [data-flickity-dot]:nth-last-child(1) { display: none; } }
+@media (max-width: 767px) { [data-flickity-type="cards"] { --flick-col: 1.25; --flick-gap: 12px; } }
+@media (min-width: 992px) { [data-flickity-type="cards"] [data-flickity-dot]:nth-last-child(-n+2) { display: none; } }
+.flickity-slider-group { position: relative; width: 100%; }
+.flickity-list { display: flex; gap: var(--flick-gap); }
+.flickity-item { flex-shrink: 0; width: calc((99.99% / var(--flick-col)) - (var(--flick-gap) * ((var(--flick-col) - 1) / var(--flick-col)))); margin-right: var(--flick-gap); }
+[data-flickity-status="active"] .flickity-list { gap: 0; }
+.flickity-item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.flickity-controls { pointer-events: none; position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.flickity-arrows { pointer-events: none; display: flex; justify-content: space-between; align-items: center; width: calc(100% + 3em); }
+.flickity-arrow { pointer-events: auto; display: flex; justify-content: center; align-items: center; width: 3em; height: 3em; padding: 0 .75em; border: 0; border-radius: 50%; background: var(--dark); color: var(--light); cursor: pointer; transition: background-color .3s, color .3s, opacity .3s; }
+.flickity-arrow:hover { background: var(--nutgold); color: var(--white); }
+.flickity-arrow.is--flipped { transform: scaleX(-1); }
+.flickity-dots { position: absolute; left: 0; bottom: -40px; }
+.flickity-dots-list { display: flex; gap: .75em; }
+.flickity-dot { pointer-events: auto; width: .75em; height: .75em; padding: 0; border: 0; border-radius: 50%; background: var(--border-dark); cursor: pointer; }
+[data-flickity-dot="active"] { background: var(--dark); }
 
 /* Parallaxe légère : le script décale les images au défilement */
 [data-parallax] { will-change: transform; }
@@ -244,9 +278,12 @@ abbr[title] { text-decoration: none; color: var(--nutgold); }
 
 /* Tablette */
 @media (max-width: 991px) {
-  .intro__grid, .config, .cta__content { grid-template-columns: 1fr; gap: 40px; }
+  .intro__grid, .config, .cta__content, .essentiel { grid-template-columns: 1fr; gap: 40px; }
+  .essentiel__photo { min-height: 0; aspect-ratio: 4 / 5; max-height: 70vh; }
+  .flickity-arrows { width: 100%; }
   .cta__intro { position: static; }
   .features, .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery { padding-top: 64px; padding-bottom: 88px; }
 }
 /* Mobile */
 @media (max-width: 640px) {
@@ -262,6 +299,7 @@ abbr[title] { text-decoration: none; color: var(--nutgold); }
   .hero h1 { padding-right: 56px; }
   .section { padding-top: 64px; padding-bottom: 64px; }
   .features, .plans, .field-row, .cta__cols, .services__list--two { grid-template-columns: 1fr; }
+  .essentiel .features { grid-template-columns: 1fr; }
   .form__group, .services, .plan, .feature { padding: 20px; }
   .footer__links { margin-left: 0; }
   .form__footer { flex-direction: column; align-items: stretch; }

@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
   <link rel="preload" href="/assets/hero-auditorium.webp" as="image">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.min.css">
   <link rel="stylesheet" href="/styles.css">
   <script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("is-loading");</script>
 </head>
@@ -73,7 +74,11 @@
     </section>
 
     <section class="section" aria-labelledby="essentiel-title">
-      <div class="container">
+      <div class="container essentiel">
+        <figure class="essentiel__photo reveal">
+          <img data-parallax src="/assets/essentiel-portrait.webp" alt="Les gradins de l'auditorium, assises rosées et garde-corps noirs" width="850" height="1134" loading="lazy">
+        </figure>
+        <div class="essentiel__content">
         <span class="label label-pill" id="essentiel-title">L'essentiel</span>
         <ul class="features" data-stagger>
           <li class="feature"><h2 class="feature__title">210 places assises</h2><p class="feature__text">334 personnes debout · 340 m²</p></li>
@@ -90,6 +95,7 @@
             <li>Conférences</li><li>Séminaires &amp; plénières</li><li>Lancements produit</li><li>Formations</li><li>Workshops</li>
             <li>Assemblées générales</li><li>Cocktails</li><li>Projections</li><li>Salons et événements RH</li><li>Team building</li>
           </ul>
+        </div>
         </div>
       </div>
     </section>
@@ -160,6 +166,31 @@
             <span class="plan__price">Sur demande · Devis gratuit</span>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Galerie : slider Flickity de la bibliothèque Partiqle (osmo-flickity-slider), le même que sur laqueduc.work/experience -->
+    <section class="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <span class="label label-pill" id="gallery-title">L'auditorium en images</span>
+        <div data-flickity-status="not-active" data-flickity-type="cards" data-flickity-count="" class="flickity-slider-group">
+          <div data-flickity-list class="flickity-list">
+            <div data-flickity-item class="flickity-item"><img src="/assets/gallery-assises.webp" alt="Rangées d'assises rosées vues en plongée" width="850" height="1134" loading="lazy"></div>
+            <div data-flickity-item class="flickity-item"><img src="/assets/config-amphitheatre.webp" alt="Configuration amphithéâtre, gradins déployés" width="1400" height="934" loading="lazy"></div>
+            <div data-flickity-item class="flickity-item"><img src="/assets/gallery-gradins.webp" alt="Une personne assise dans les gradins baignés de lumière" width="850" height="1134" loading="lazy"></div>
+            <div data-flickity-item class="flickity-item"><img src="/assets/config-plateau-libre.webp" alt="Configuration plateau libre, parquet dégagé" width="1400" height="934" loading="lazy"></div>
+            <div data-flickity-item class="flickity-item"><img src="/assets/essentiel-portrait.webp" alt="Circulation entre les gradins" width="850" height="1134" loading="lazy"></div>
+          </div>
+          <div data-flickity-controls class="flickity-controls">
+            <div class="flickity-arrows">
+              <button type="button" data-flickity-control="prev" class="flickity-arrow is--flipped" aria-label="Photo précédente"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"/></svg></button>
+              <button type="button" data-flickity-control="next" class="flickity-arrow" aria-label="Photo suivante"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"/></svg></button>
+            </div>
+            <div class="flickity-dots"><div class="flickity-dots-list">
+              <button type="button" data-flickity-dot="active" class="flickity-dot" aria-label="Photo 1"></button><button type="button" data-flickity-dot class="flickity-dot" aria-label="Photo 2"></button><button type="button" data-flickity-dot class="flickity-dot" aria-label="Photo 3"></button><button type="button" data-flickity-dot class="flickity-dot" aria-label="Photo 4"></button><button type="button" data-flickity-dot class="flickity-dot" aria-label="Photo 5"></button>
+            </div></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -268,6 +299,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js" defer></script>
   <script src="/script.js" defer></script>
 </body>
 </html>

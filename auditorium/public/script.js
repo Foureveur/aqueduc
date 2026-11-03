@@ -124,3 +124,47 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
       });
   });
 })();
+
+// Galerie : script du slider Flickity « cards » de la bibliothèque Partiqle (osmo-flickity-slider),
+// identique à celui de laqueduc.work/experience.
+(function initFlickitySlider() {
+  if (typeof Flickity === "undefined") return;
+  document.querySelectorAll('[data-flickity-type="cards"]').forEach(function (slider, index) {
+    slider.id = "flickity-type-cards-id-" + index;
+    slider.setAttribute("data-flickity-count", slider.querySelectorAll("[data-flickity-item]").length);
+    slider.setAttribute("data-flickity-status", "active");
+    var sliderEl = slider.querySelector("[data-flickity-list]");
+    if (!sliderEl) return;
+    var prevButton = slider.querySelector('[data-flickity-control="prev"]');
+    var nextButton = slider.querySelector('[data-flickity-control="next"]');
+    var flickity = new Flickity(sliderEl, {
+      watchCSS: true, contain: true, wrapAround: false, dragThreshold: 10,
+      prevNextButtons: false, pageDots: false, cellAlign: "left",
+      selectedAttraction: 0.015, friction: 0.25, percentPosition: true, freeScroll: false,
+      on: {
+        dragStart: function () { sliderEl.style.pointerEvents = "none"; },
+        dragEnd: function () { sliderEl.style.pointerEvents = "auto"; },
+        change: function () { updateArrows(); updateDots(); }
+      }
+    });
+    function cols() { return parseInt(getComputedStyle(sliderEl).getPropertyValue("--flick-col"), 10) || 1; }
+    function updateArrows() {
+      var atStart = !flickity.cells[flickity.selectedIndex - 1];
+      var atEnd = !flickity.cells[flickity.selectedIndex + cols()];
+      if (prevButton) atStart ? prevButton.setAttribute("disabled", "") : prevButton.removeAttribute("disabled");
+      if (nextButton) atEnd ? nextButton.setAttribute("disabled", "") : nextButton.removeAttribute("disabled");
+    }
+    var dots = slider.querySelectorAll("[data-flickity-dot]");
+    function updateDots() {
+      var maxIndex = flickity.cells.length - cols();
+      var active = Math.min(flickity.selectedIndex, maxIndex);
+      dots.forEach(function (dot, i) { dot.setAttribute("data-flickity-dot", i === active ? "active" : ""); });
+    }
+    if (prevButton) prevButton.addEventListener("click", function () { flickity.previous(); });
+    if (nextButton) nextButton.addEventListener("click", function () { flickity.next(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { flickity.select(Math.min(i, flickity.cells.length - cols())); });
+    });
+    updateArrows();
+  });
+})();
