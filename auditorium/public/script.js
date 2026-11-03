@@ -2,37 +2,27 @@
 document.documentElement.classList.add("js");
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Preloader : le logo et la pile de photos apparaissent, les photos du dessus s'effacent
-// une à une, puis l'écran vert se retire (même rythme que le site vitrine, environ 2,5 s).
+// Preloader : même chronologie que l'interaction Webflow du site vitrine.
+// 0 s logo et cadre apparaissent ; 0,5 / 0,75 / 1 / 1,25 s les photos du dessus disparaissent ;
+// 2 s le cadre s'agrandit jusqu'au plein écran (1,5 s) ; 3,5 s fondu de l'écran (0,25 s), le menu
+// réapparaît et le titre glisse depuis le bas.
 (function preloader() {
   var root = document.documentElement;
   var el = document.querySelector(".preloader");
-  if (!el || !root.classList.contains("is-loading")) return;
+  var title = document.querySelector(".hero__title");
+  if (!el || !root.classList.contains("is-loading")) { if (el) el.remove(); return; }
+  if (title) title.classList.add("is-pending");
   var imgs = [].slice.call(el.querySelectorAll(".preloader__img")).reverse(); // du dessus vers le dessous
-  var heroReady = new Promise(function (resolve) {
-    var hero = document.querySelector(".hero__img");
-    if (!hero || hero.complete) return resolve();
-    hero.addEventListener("load", resolve); hero.addEventListener("error", resolve);
-    setTimeout(resolve, 3500);
+  var at = function (ms, fn) { setTimeout(fn, ms); };
+  requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("is-on"); }); });
+  imgs.slice(0, -1).forEach(function (img, i) { at(500 + i * 250, function () { img.classList.add("is-hidden"); }); });
+  at(2000, function () { el.classList.add("is-expand"); });
+  at(3500, function () {
+    el.classList.add("is-done");
+    root.classList.remove("is-loading");
+    if (title) title.classList.remove("is-pending");
   });
-  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
-  requestAnimationFrame(function () { el.classList.add("is-on"); });
-  wait(500)
-    .then(function () {
-      return imgs.slice(0, -1).reduce(function (p, img) {
-        return p.then(function () { img.classList.add("is-hidden"); return wait(280); });
-      }, wait(250));
-    })
-    .then(function () { return Promise.all([heroReady, wait(450)]); })
-    .then(function () { el.classList.add("is-out"); return wait(300); })
-    .then(function () {
-      el.classList.add("is-done");
-      root.classList.remove("is-loading");
-      return wait(400);
-    })
-    .then(function () { el.remove(); });
-  // Filet de sécurité : la page ne reste jamais bloquée derrière le preloader
-  setTimeout(function () { root.classList.remove("is-loading"); if (el.parentNode) el.remove(); }, 6000);
+  at(3800, function () { el.remove(); });
 })();
 
 // Parallaxe légère : chaque image marquée data-parallax glisse un peu moins vite que la page.
@@ -60,7 +50,10 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 })();
 
 (function reveal() {
-  var items = document.querySelectorAll(".reveal");
+  document.querySelectorAll("[data-stagger]").forEach(function (box) {
+    [].forEach.call(box.children, function (child, i) { child.style.setProperty("--i", Math.min(i, 10)); });
+  });
+  var items = document.querySelectorAll(".reveal, [data-stagger]");
   if (!("IntersectionObserver" in window)) { items.forEach(function (el) { el.classList.add("is-in"); }); return; }
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } });

@@ -24,10 +24,11 @@
   <div class="preloader" aria-hidden="true">
     <div class="preloader__box">
       <img class="preloader__logo" src="/assets/logo-aqueduc-white.svg" alt="" width="180" height="22">
-      <div class="preloader__img" style="background-image:url(/assets/config-amphitheatre.webp)"></div>
+      <div class="preloader__img preloader__img--last" style="background-image:url(/assets/hero-auditorium.webp)"></div>
       <div class="preloader__img" style="background-image:url(/assets/patio.webp)"></div>
-      <div class="preloader__img" style="background-image:url(/assets/config-plateau-libre.webp)"></div>
-      <div class="preloader__img" style="background-image:url(/assets/hero-auditorium.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/config-amphitheatre.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/preload-gradins.webp)"></div>
+      <div class="preloader__img" style="background-image:url(/assets/preload-assises.webp)"></div>
     </div>
   </div>
 
@@ -49,13 +50,13 @@
       <div class="hero__veil"></div>
       <div class="container hero__content">
         <span class="label label-pill label-pill--light">L'Auditorium · Location</span>
-        <h1 id="hero-title" class="h-display">Réservez un auditorium de haut standing pour vos événements</h1>
+        <h1 id="hero-title" class="h-display hero__title"><span>Réservez un auditorium de haut standing pour vos événements</span></h1>
       </div>
     </section>
 
     <section class="intro">
       <div class="container intro__grid">
-        <div class="intro__text reveal">
+        <div class="intro__text" data-stagger>
           <p class="text-lead">Découvrez une salle de conférence modulable et tout équipée pouvant accueillir jusqu'à 210 places assises.</p>
           <p class="text-lead">Aux portes de Paris, l'auditorium de L'Aqueduc est pensé pour une expérience d'accueil de haut standing.</p>
         </div>
@@ -70,18 +71,18 @@
     <section class="section" aria-labelledby="essentiel-title">
       <div class="container">
         <span class="label label-pill" id="essentiel-title">L'essentiel</span>
-        <ul class="features">
-          <li class="feature reveal"><h2 class="feature__title">210 places assises</h2><p class="feature__text">334 personnes debout · 340 m²</p></li>
-          <li class="feature reveal"><h2 class="feature__title">ERP &amp; PMR</h2><p class="feature__text">Établissement recevant du public, accessible aux personnes à mobilité réduite</p></li>
-          <li class="feature reveal"><h2 class="feature__title">Accessibilité</h2><p class="feature__text">En transports en commun ou en voiture (stationnement en option)</p></li>
-          <li class="feature reveal"><h2 class="feature__title">Modularité</h2><p class="feature__text">Gradins rétractables · Scène adaptable</p></li>
-          <li class="feature reveal"><h2 class="feature__title">Régie audiovisuelle</h2><p class="feature__text">Sonorisation, projection, éclairage</p></li>
-          <li class="feature reveal"><h2 class="feature__title">Restauration</h2><p class="feature__text">Offre traiteur, snacking ou cocktail</p></li>
+        <ul class="features" data-stagger>
+          <li class="feature"><h2 class="feature__title">210 places assises</h2><p class="feature__text">334 personnes debout · 340 m²</p></li>
+          <li class="feature"><h2 class="feature__title">ERP &amp; PMR</h2><p class="feature__text">Établissement recevant du public, accessible aux personnes à mobilité réduite</p></li>
+          <li class="feature"><h2 class="feature__title">Accessibilité</h2><p class="feature__text">En transports en commun ou en voiture (stationnement en option)</p></li>
+          <li class="feature"><h2 class="feature__title">Modularité</h2><p class="feature__text">Gradins rétractables · Scène adaptable</p></li>
+          <li class="feature"><h2 class="feature__title">Régie audiovisuelle</h2><p class="feature__text">Sonorisation, projection, éclairage</p></li>
+          <li class="feature"><h2 class="feature__title">Restauration</h2><p class="feature__text">Offre traiteur, snacking ou cocktail</p></li>
         </ul>
 
         <div class="events">
-          <span class="label">Pour quels événements ?</span>
-          <ul class="chips">
+          <span class="label label-pill">Pour quels événements ?</span>
+          <ul class="chips" data-stagger>
             <li>Conférences</li><li>Séminaires &amp; plénières</li><li>Lancements produit</li><li>Formations</li><li>Workshops</li>
             <li>Assemblées générales</li><li>Cocktails</li><li>Projections</li><li>Salons et événements RH</li><li>Team building</li>
           </ul>
@@ -95,10 +96,11 @@
         <div class="config__text">
           <span class="label">L'auditorium · ERP type L · Cat. 3 · 340 m²</span>
           <h2 id="config-title" class="h2">Une salle, deux configurations</h2>
+          <p class="text-small muted config__lede">Grâce à ses gradins rétractables, l'auditorium passe en quelques minutes d'un amphithéâtre de 210 places assises à un plateau libre de 340 m² pouvant accueillir 334 personnes debout. Conférence le matin, cocktail le soir : la salle s'adapte à votre programme.</p>
 
           <div class="services services--included reveal">
             <span class="label">Caractéristiques &amp; services inclus</span>
-            <ul class="services__list services__list--two">
+            <ul class="services__list services__list--two" data-stagger>
               <li>Accessibilité PMR</li><li>Wi-Fi haut débit</li>
               <li>Gradins rétractables</li><li>Régie audiovisuelle</li>
               <li>Scène adaptable</li><li>Agent(s) SSIAP</li>
@@ -109,7 +111,7 @@
 
           <div class="services services--option reveal">
             <span class="label">En option</span>
-            <ul class="services__list services__list--two">
+            <ul class="services__list services__list--two" data-stagger>
               <li>Régisseur technique</li><li>Prestation traiteur</li>
               <li>Hôte(sse)s d'accueil</li><li>Animateur</li>
               <li>Agent de sécurité</li><li>Parking visiteur</li>
@@ -117,12 +119,12 @@
           </div>
         </div>
 
-        <div class="config__photos">
-          <figure class="config__photo reveal">
+        <div class="config__photos" data-stagger>
+          <figure class="config__photo">
             <img data-parallax src="/assets/config-amphitheatre.webp" alt="Configuration amphithéâtre : gradins déployés face à la scène" width="1400" height="934" loading="lazy">
             <figcaption class="label">Amphithéâtre · 210 places assises</figcaption>
           </figure>
-          <figure class="config__photo reveal">
+          <figure class="config__photo">
             <img data-parallax src="/assets/config-plateau-libre.webp" alt="Configuration plateau libre : gradins rétractés, parquet dégagé" width="1400" height="934" loading="lazy">
             <figcaption class="label">Plateau libre · 334 personnes</figcaption>
           </figure>
@@ -137,18 +139,18 @@
           <h2 id="formules-title" class="h2">Formules</h2>
           <p class="text-small muted">Une offre adaptable à tous les types d'événements.</p>
         </div>
-        <ul class="plans">
-          <li class="plan reveal">
+        <ul class="plans" data-stagger>
+          <li class="plan">
             <span class="label">Demi-journée</span>
             <span class="plan__hours">9h – 13h00</span>
             <span class="plan__price">À partir de 3 000 € HT</span>
           </li>
-          <li class="plan plan--featured reveal">
+          <li class="plan plan--featured">
             <span class="label">Journée</span>
             <span class="plan__hours">9h – 18h00</span>
             <span class="plan__price">À partir de 5 000 € HT</span>
           </li>
-          <li class="plan reveal">
+          <li class="plan">
             <span class="label">After work</span>
             <span class="plan__hours">À partir de 18h</span>
             <span class="plan__price">Sur demande · Devis gratuit</span>
@@ -163,9 +165,10 @@
       <div class="cta__veil"></div>
       <div class="container cta__content">
         <div class="cta__intro">
-          <h2 id="cta-title" class="h-display">Réservez l'auditorium dès maintenant !</h2>
+          <span class="label label-pill label-pill--light">Information &amp; réservation</span>
+          <h2 id="cta-title" class="h-display">Parlons de votre événement</h2>
           <p class="text-small cta__lede">Laissez-nous vos coordonnées : nous revenons vers vous rapidement avec une proposition adaptée. Les précisions sur votre événement sont facultatives mais nous aident à vous répondre plus vite.</p>
-          <div class="cta__cols">
+          <div class="cta__cols" data-stagger>
             <div>
               <span class="label label--gold">Contactez-nous</span>
               <p>David Codazzi<br>
@@ -235,16 +238,15 @@
             </div>
           </details>
 
-          <label class="consent">
-            <input id="f-consent" name="consent" type="checkbox" required>
-            <span>J'accepte que mes coordonnées soient utilisées pour répondre à ma demande. Elles ne sont pas transmises à des tiers. <abbr title="obligatoire">*</abbr></span>
-          </label>
           <input class="hp" type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true">
-
           <div class="form__footer">
-            <button class="btn btn--light" type="submit" id="f-submit">Envoyer ma demande</button>
-            <p class="form__status" id="f-status" role="status" aria-live="polite"></p>
+            <label class="consent">
+              <input id="f-consent" name="consent" type="checkbox" required>
+              <span>J'accepte que mes coordonnées soient utilisées pour répondre à ma demande. Elles ne sont pas transmises à des tiers. <abbr title="obligatoire">*</abbr></span>
+            </label>
+            <button class="btn btn--gold" type="submit" id="f-submit">Envoyer ma demande</button>
           </div>
+          <p class="form__status" id="f-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
