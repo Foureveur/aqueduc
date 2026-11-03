@@ -85,7 +85,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; color: var(--light); }
 .nav__inner { display: flex; align-items: center; gap: 24px; padding-top: 24px; padding-bottom: 24px; }
 .nav__logo img { width: 180px; height: auto; }
-.nav__address { color: var(--semi-transparent-light); }
+.nav__address { color: var(--semi-transparent-light); text-decoration: none; transition: color .3s; }
+.nav__address:hover { color: var(--nutgold); }
 .nav__link { margin-left: auto; font-size: 14px; color: var(--semi-transparent-light); text-decoration: none; border-bottom: 1px solid transparent; transition: color .3s, border-color .3s; }
 .nav__link:hover { color: var(--light); border-color: var(--nutgold); }
 .nav__cta { margin-left: 8px; }
