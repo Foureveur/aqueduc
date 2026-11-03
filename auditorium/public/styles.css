@@ -96,6 +96,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
 .hero__veil { position: absolute; inset: 0; background: linear-gradient(180deg, #16231b8c 0%, #16231b1a 35%, #16231b33 60%, #16231be6 100%); }
 .hero__content { position: relative; padding-top: 160px; padding-bottom: 64px; }
+.hero__scroll { position: absolute; z-index: 2; right: max(var(--gutter), 16px); bottom: 64px; display: flex; align-items: center; gap: 14px; color: var(--light); text-decoration: none; transition: opacity .8s linear .4s; }
+.is-loading .hero__scroll { opacity: 0; }
+.hero__scroll .label { color: var(--semi-transparent-light); transition: color .3s; }
+.hero__scroll-circle { display: grid; place-items: center; width: 56px; height: 56px; border: 1px solid var(--border-light); border-radius: 50%; transition: background-color .3s, border-color .3s, color .3s; }
+.hero__scroll-circle svg { animation: hero-nudge 2.2s cubic-bezier(.65,.01,.05,.99) infinite; }
+.hero__scroll:hover .label { color: var(--light); }
+.hero__scroll:hover .hero__scroll-circle { background: var(--nutgold); border-color: var(--nutgold); color: var(--white); }
+@keyframes hero-nudge { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .hero__scroll-circle svg { animation: none; } }
 .hero h1 { max-width: 22ch; text-wrap: wrap; }
 
 /* Bandeau vert : accroche + prix */
@@ -238,6 +247,10 @@ abbr[title] { text-decoration: none; color: var(--nutgold); }
   .nav__logo img { width: 130px; }
   .nav__cta { min-width: 0; padding: .8em 1em; }
   .hero__content { padding-bottom: 40px; }
+  .hero__scroll { bottom: 40px; }
+  .hero__scroll .label { display: none; }
+  .hero__scroll-circle { width: 48px; height: 48px; }
+  .hero h1 { padding-right: 56px; }
   .section { padding-top: 64px; padding-bottom: 64px; }
   .features, .plans, .field-row, .cta__cols, .services__list--two { grid-template-columns: 1fr; }
   .form__group, .services, .plan, .feature { padding: 20px; }
