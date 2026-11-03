@@ -210,6 +210,8 @@ abbr[title] { text-decoration: none; color: var(--nutgold); }
 .footer__inner { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; padding-top: 48px; padding-bottom: 48px; }
 .footer__inner img { width: 200px; }
 .footer__inner .label { color: var(--semi-transparent-light); }
+.footer__address { text-decoration: none; transition: color .3s; }
+.footer__inner .footer__address:hover { color: var(--nutgold); }
 .footer__links { display: flex; gap: 24px; margin-left: auto; font-size: 14px; }
 .footer__links a { text-decoration: none; }
 .footer__links a:hover { color: var(--nutgold); }
