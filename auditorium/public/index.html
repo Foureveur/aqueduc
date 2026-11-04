@@ -202,7 +202,7 @@
       <div class="container cta__content">
         <div class="cta__intro">
           <span class="label label-pill label-pill--light">Information &amp; réservation</span>
-          <h2 id="cta-title" class="h-display">Parlons de votre événement</h2>
+          <h2 id="cta-title" class="h-display">Parlons de votre événement&nbsp;!</h2>
           <p class="text-small cta__lede">Laissez-nous vos coordonnées : nous revenons vers vous rapidement avec une proposition adaptée. Les précisions sur votre événement sont facultatives mais nous aident à vous répondre plus vite.</p>
           <div class="cta__cols" data-stagger>
             <div>
@@ -219,8 +219,8 @@
         </div>
 
         <form class="form" id="contact-form" novalidate>
-          <fieldset class="form__group">
-            <legend class="label">Vos coordonnées</legend>
+          <div class="form__group" role="group" aria-labelledby="f-legend">
+            <span class="label form__legend" id="f-legend">Vos coordonnées</span>
             <div class="field-row">
               <label class="field"><span>Nom <abbr title="obligatoire">*</abbr></span>
                 <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120"></label>
@@ -233,7 +233,7 @@
               <label class="field"><span>Téléphone <em>(facultatif)</em></span>
                 <input id="f-tel" name="telephone" type="tel" autocomplete="tel" maxlength="40"></label>
             </div>
-          </fieldset>
+          </div>
 
           <details class="form__group form__more" id="f-more">
             <summary><span class="label">Préciser ma demande</span><span class="form__more-hint">facultatif</span></summary>

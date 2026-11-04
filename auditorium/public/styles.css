@@ -224,7 +224,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .form .form__status { color: var(--light); }
 
 .form__group { border: 0; margin: 0; padding: 28px; background: var(--white); display: grid; gap: 18px; }
-.form__group legend { float: left; width: 100%; margin-bottom: 4px; padding: 0; color: var(--semi-transparent-dark); }
+.form__legend { display: block; margin-bottom: 4px; color: var(--semi-transparent-dark); }
 .field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .field { display: grid; gap: 6px; font-size: 14px; }
 .field > span em { font-style: normal; color: var(--semi-transparent-dark); }
